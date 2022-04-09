@@ -1,10 +1,3 @@
-/*
-Nom : JusteNombre
-Rôle : Choisit un nombre au hasard entre 1 et 1000 et demande à l’utilisateur de le retrouver
-Auteur : Léo Seguin
-Date : 12/10/2020
-*/
-
 #include <iostream>
 #include <time.h>
 #include <windows.h>
