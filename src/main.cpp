@@ -1,35 +1,52 @@
 #include <iostream>
-#include <time.h>
-#include <windows.h>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 int main()
-
 {
-    srand(time(NULL));
-    short nbGagnant, nb;
-    nbGagnant = rand() %1000 + 1;
-    cout<<"Salut BG !"<<endl;
-    while (nb!=nbGagnant)
+    short nbGagnant, nb, essais = 0;
+    srand(std::time(nullptr));
+    nbGagnant = rand() % 1000 + 1;
+    cout << "Salut !" << endl;
+    cout << "Saisissez un prix entre 1 et 1000." << endl;
+    while (nb != nbGagnant)
     {
-            cout<<"Saisissez un nombre entre 1 et 1000."<<endl;
-            cin>>nb;
+        cin >> nb;
 
-            if (nb<nbGagnant)
+        if (!cin)
+        {
+            cout << "Ce n'est pas un nombre valide..." << endl;
+            cin.clear();
+            return 0;
+            
+        } else {
+            
+            if (nb < nbGagnant)
             {
-                cout<<"Le nombre gagnant est plus grand ! Recomencez."<<endl;
+                cout << "Le prix est plus grand." << endl;
             }
-            if (nb>nbGagnant)
+    
+            if (nb > nbGagnant)
             {
-                    cout<<"Le nombre gagnant est plus petit. Recomencez."<<endl;
+                cout << "Le prix est plus petit." << endl;
             }
+            
+            essais++;
+        }
 
-            if (nb==nbGagnant)
-            {
-                    cout<<"Felicitation ! Vous avez trouve le nombre gagnant ! Vous n'avez rien gagne par contre ;)"<<endl;
+        if (nb == nbGagnant)
+        {
+            char reset;
+            cout << "Félicitation, en " << essais << " essais ! On recommence ? (o/n)" << endl;
+            cin >> reset;
+            if (reset == 'o') {
+                nbGagnant = rand() % 1000 + 1;
+                cout << "Saisissez un prix entre 1 et 1000." << endl;
+            } else {
+                return 0;
             }
-            system("PAUSE");
+        }
     }
     return 0;
 }
